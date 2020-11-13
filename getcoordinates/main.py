@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 # coding: utf-8
-'''
+"""
 Simple module allowing you to get your latitude and longitude in multiple ways
-'''
+"""
 import sys
-import requests
 import re
+
+import requests
 
 
 URL = "http://wttr.in/~"
@@ -13,9 +14,9 @@ REGEX = r"\[([-+]?[0-9]*\.?[0-9]+,[-+]?[0-9]*\.?[0-9]+)\]"
 
 
 def main():
-    '''
+    """
     Main function, simply displays the result to stdout
-    '''
+    """
     try:
         address = ' '.join(sys.argv[1:])
     except IndexError:
@@ -30,9 +31,10 @@ def main():
             break
     try:
         print(coords.group(1))
-    except Exception as e:
-        print('Unable to find address.', file=sys.stderr)
+    except Exception as err:
+        print('Unable to find address:', err, file=sys.stderr)
         sys.exit(2)
+    sys.exit(0)
 
 
 if __name__ == "__main__":
